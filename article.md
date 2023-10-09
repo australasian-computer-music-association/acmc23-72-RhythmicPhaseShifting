@@ -41,7 +41,7 @@ The purpose of this research is to find the computational method for implementin
 
 # Discrete Rhythmic phase-shifting
 
-![Discrete rhythmic phase-shifting by one beat ($T$ms)](media/figure-discreted-phase-shifting.png)
+![Discrete rhythmic phase-shifting by one beat ($T$ms)](media/figure-discreted-phase-shifting.png){ width=50% }
 
 
 Discrete phase-shifting can be implemented by making the time interval delay by the corresponding length of the
