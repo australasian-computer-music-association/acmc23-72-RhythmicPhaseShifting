@@ -1,183 +1,278 @@
 ---
-title: 'A Sample Chroma Article and Template Instructions'
+title: 'Computation and Musical Applications of Discrete and Continuous Rhythmic Phase-shifting Techniques'
 author: 
-    - name: Fake Author
-      affiliation: Fake University
+    - name: Yoonjae Choi
+      affiliation: Hanyang University
       orcid: https://orcid.org/0000-0000-0000-0000
-      city: Coolac
-      country: Australia
-      email: fake.author@fake.edu.au
-    - name: Another Phony
-      affiliation: Phony Studios
-      orcid: https://orcid.org/0000-0000-0000-0000
-      city: Esperance
-      country: Australia
-      email: aphony@fakemail.com
-author-header: F. Author & A. Phony
-abstract: |
-    This document is a sample article manuscript and instructions for using the Markdown submission template for Chroma, Journal of the Australasian Computer Music Association.
-
-    It is available under a Creative Commons Zero v1.0 Universal license, so you are free to use it in other journals, documents, or any other purpose.
+      city: Seoul 
+      country: South Korea
+      email: hogysim93@gmail.com
+author-header: Yoonjae Choi
+abstract: 
+    This paper describes how to implement rhythm phase shifting in a computational way in order to shift the phase of a rhythm in a controlled but expanded way. It is mainly divided into two methods, discrete phase-shifting which can be implemented through the shifting of the sample delay, and continuous phase-shifting through the adjustment of the playback speed. The latter is again divided into two techniques depending on whether the playback speed is fixed or variable. It also deals with the mixing of these various techniques. For each technique, we discuss the process and the related mathematical formula that must be computed to align the phase-interval in rhythmic units of the current bpm.
 anonymous: 'false'
 bibliography: 'references'
 papersize: a4
 classoption: 12pt
-secnumdepth: 3
 reference-section-title: 'References'
-year: YYYY
+year: 2023
 volume: XX
 number: X
 article-no: X
-date: 'YYYY-MM-DD'
-accepted-date: 'YYYY-MM-DD'
+date: '2023-09-17'
+accepted-date: '2023-09-22'
 published-date: 'YYYY-MM-DD'
 ---
 
 # Introduction
 
-This document is the instructions for using the Markdown submission template for Chroma, Journal of the Australasian Computer Music Association and doubles as a sample article. The primary submission format for our journal is [Markdown](https://daringfireball.net/projects/markdown/), a light-weight plain text format for writing documents. The advantage of Markdown over formats such as `.docx` is that it can be easily and predictably converted to HTML (for viewing on the [journal website](https://journal.computermusic.org.au)) or an attractive PDF (for downloading or printing).
+Since classical music has embraced the techniques of counterpoint and harmony, the rhythmic phase-shifting technique of specific phrases or motives has been considered a significant method of composition [1]. There are various works of music in which we can find out examples of this technique. Nevertheless, in the musical context, the classic stretto technique has limitations in regard to its presence in that it cannot function as an entire part of the specific musical section.  The usage of this technique was still restricted as a minor part of the counterpoint technique. However, some modern composers started to expand these methods not as a subcategory of counterpoint music but as a musical mixture itself. It can be found in the works of several minimalist composer’s works such as Steve Reich and John Adams. 
 
-Markdown lets you specify headings, lists, code segments, images, quotations and, of course, divide your text into paragraphs. You don't get to choose the font or size of text---that is defined by our journal website and the programs that translates the article manuscript into a PDF file. These programs for convertinng the manuscript to HTML and PDF use a tool called [pandoc](https://pandoc.org). You can install pandoc on your system if you like, and convert your article to the standard journal format.
+![Editing this Markdown file in VSCode and viewing a preview.](media/john-adams1.png)
 
-You don't need a specific program to edit a Markdown document, they are simply plain text files so you can just use notepad (Windows) or textedit (MacOS). That said, many people like to use a text editor that displays the syntax with nice colours or provides a preview of the rendered document in HTML format. I happen to be editing this document with [VSCode](https://vscode.dev), which can provide a side-by-side HTML preview, or there are online editors such as [HackMD](https://hackmd.io) or [Dillinger](https://dillinger.io).
+Figure 1.  John Adams -Shaker Loops for String Orchestral [2]
 
-![Editing this Markdown file in VSCode and viewing a preview.](media/markdown-editing.png)
+In the case of using these musical phase-shifting techniques mentioned above, composers mainly used phase-shifting in a non-linear manner within traditional rhythm notation. In other words, the phasing intervals are bound to double, triple, quarter, eighth note, or smaller beat units. However, there are a few cases using linear phase-shifting.
 
-You are free to inspect the [source code](https://github.com/cpmpercussion/chroma-template) for this template, and if you are setting up another journal or authoring scholarly articles, the templates and this text are licensed under a [Creative Commons Zero v1.0 Universal](https://github.com/cpmpercussion/chroma-template/blob/main/LICENSE) license.
+![Editing this Markdown file in VSCode and viewing a preview.](media/figure1-reich.png)
 
-## Isn't this all very complicated?
 
-At this point, you might be wondering why we bother with all this Markdown nonsense. After all, haven't journals gotten by with Microsoft Word documents for quite a while now? And what about LaTeX?
 
-Yes, a typical academic journal accepts articles in Word (`.docx`) formats, but these journals have production editors to convert accepted manuscripts into PDF print-ready articles and (sometimes) a more accessible web page. These editors are paid with subscription fees paid by universities or with publications fees paid by authors. _Chroma_ is a fully-open access, scholar-run journal, with no subscripton or publication fees so we prefer to use a template that provides nice PDF and web versions of manuscripts without editing. 
+Figure 2.  Steve Reich - Drumming [3]
 
-Many journals and conferences (particularly in STEM fields) accept articles in LaTeX format which provides a nice PDF output (in fact, pandoc uses LaTeX to build our PDF outputs). This can be a solution for some authors, but  many others authors would run a mile rather than learn LaTeX so other solutions are needed.
 
-There are very few academic journals or conferences with Markdown submission templates, but we think that it is a positive move towards simpler and lower-cost community-led publishing.
 
-# Syntax
+Through the highly rigorous practice of instrument players, the linear phase-shifting technique has been accomplished to some degree, but it still has a limit within the ability of humans’ rhythmic perception and playing technique [4]. In that context, I thought that the potential of this musical technique is much richer when implemented in computer music than in acoustic music. Then, what processes should be used to apply this phasing technique to computer music? 
 
-We cover a brief explanation of the main syntax features below, but more in-depth documentation can be found at [CommonMark](https://commonmark.org/help/).
 
-You can write section headings in your article by typing `#`, which corresponds to "Heading 1" in Word or `\section{}` in LaTeX. Sub-sections can be produced with `##` and so on.
 
-You can use produce emphasised text with underscores `_italics_`, using bold text is possible, but not considered good style.
+Basically, if the repetition technique of minimalist voice parts is implemented through the looping of play samples, methods that can create a rhythmic phase between voice parts can be implemented such as sample delay and playback speed. Step-changed phase shifting can be implemented through sample delay, and continuous phase shifting can be implemented through playback speed.
+The purpose of this research is to find the computational method for implementing linear and non-linear phase-shifting and musical applications of these by using digital tools and computers.
 
-You can include inline code with backticks, e.g., `` `code` `` produces `code`. For a longer code block, start and finish it with three backticks (`` ``` ``), e.g.:
 
-```{caption="Here's a caption for the code snippet" .scheme} 
-(bind-func sine:DSP
-  (lambda (in time chan dat)
-    (* .1 (cos (* (convert time) .04)))))
+
+
+
+
+# Discrete Rhythmic phase-shifting
+
+Discrete phase-shifting can be implemented by making the time interval delay by the corresponding length of the
+unit note. This is shown in figure 3.
+
+
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/figure-discreted-phase-shifting.png)
+
+
+
+Figure 3. Discrete rhythmic phase-shifting by one beat (T ms)
+
+
+
+Half, triple, quarter and eighth notes are the major units for the delay. 
+
+
+
+ * *Suppose we have two audio samples with the same unit Bpm ‘b’, the equation
+ for the rhythmic phase delay T ms of i th notes length is as follows.*
+
+
+
+
+```
+T = 240000 / b * i 
 ```
 
-You can type the language name straight after the opening backticks to enable syntax highlighting.
+*b; bpm,   i; i th note     
 
-You can include hyperlinks like so: `[link text](https://computermusic.org.au)`.
 
-Footnotes are referenced with a caret symbol (`[^1]`) (see [pandoc manual](https://pandoc.org/MANUAL.html#footnotes)) for instance:
-```markdown
-Here's a sentence[^1].
+In this case, the musical effect is identical to the example shown in figure 1. For example, the length of a note corresponding to a single quarter note at a speed of 120 bpm is calculated as 500 ms by the above formula. Of course, discrete shifting is possible at any point in time, but considering the musical effect, it is more desirable that the shifting point follows the unit of measure. 
 
-[^1]: And here's the footnote.
+* *Assuming n1/n2 beats of music, the formula for the interval T ms corresponding to one measure is as follows.*
+
+
+
 ```
-Which looks like this: Here's a sentence[^1].
-
-[^1]: And here's the footnote.
-
-Numbered and un-numbered lists are very easy, just use `-` to indicate unnumered list items, and numbers, e.g., `1.` to indicate numbered list items.
-
-## Figures and Tables
-
-The syntax for including an image is similar to a link but with an exclamation point before the first bracket. The text inside the square brackets is interpreted as the figure caption. For example:
+T = n1 * 240000 / b * n2 
 ```
-![Synthesisers by Charles Martin (Public Domain)](media/synthesisers.jpg)
+   
+
+
+Furthermore, using this technique makes it possible to make the phase-shifting with a non-unit interval delay that can be hardly possible by conventional methods such as music written by a score or real-instrument performance. In this case, however, the amount of delay time relative to the corresponding bpm can change the musical phenomenon. It can be perceived as an identical rhythmic 
+sound (but delayed) or separated rhythmic notes. There is a critical band of delay time that people can perceive each of the two motives as an individual rhythmic gunit. Fundamentally, it is the same principle as the critical band of pitch frequency. This paper will not cover this critical band in detail.
+
+
+# Continuous Rhythmic phase-shifting
+
+Continuous phase-shifting can be implemented by the playback speed of each motive or time stretch. In case of this, the time interval of delay can be gradually increased or decreased making a more detailed rhythmic change. This can be found in some acoustical pieces such as Steve Reich’s Drumming shown in figure 2. even though its usage is extremely limited. Generally, this technique requires an amount of practice for players and is even impossible when it goes to the extreme. In order to apply linear phase-shifting in computer music, it is essential to calculate the amount of delay and find out the synchronized point of the delayed sound motive and original sound motive. Otherwise, the phased motives will be placed beyond the composer’s control. There are various ways to implement continuous phase-shifting using time-stretching but this study will focus on a few cases.
+ 
+ 
+
+## Continuous rhythmic phase-shifting with a fixed playback speed
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/figure-fixed-playback-speed.png)
+
+
+Figure 4. Continuous rhythmic phase-shifting (fixed playback speed)
+
+
+
+The first is a case in which the two looped sounds have different playback speeds that are fixed. In this case, the rhythmic phase of the two motives with different playback speeds is linearly stretched. As a result, the phenomenon in which unsynchronized rhythms are scattered and then synchronized by the length of the unit notes is periodically repeated.  
+
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/graph-fixed-playback-speed.png)
+
+
+
+
+Figure 5.  Continuous rhythmic phase-shifting (fixed playback speed)
+
+
+
+The formula for calculating the period in which the phase shifting phase is scattered and synchronized when there is a difference in the playback speed is as follows.
+
+
+
+* *Assuming that two sound sources with unit bpm b have playback speed differences ΔP, the period T at which the delay equals the ‘i’th note is as follows. (At this time, the unit of T is ms)*
+
+
+
 ```
-
-![Synthesisers by Charles Martin (Public Domain)](media/synthesisers.jpg)
-
-Tables follow the markdown table syntax, which uses a lot of `|` and `-` symbols. The table caption goes after a `:` symbol just after the table. This syntax is specific to [pandoc](https://pandoc.org/MANUAL.html#tables).
-
-| Instrument | Keys | Strings | Antennae |
-|------------|------|---------|----------|
-| Piano      | 88   | 230     | 0        |
-| Guitar     | 0    | 6       | 0        |
-| Theremin   | 0    | 0       | 2        |
-| Trumpet    | 3    | 0       | 0        |
-Table: A table of musical instrument configurations
-
-The LaTeX template for that generates the PDF files tends to "float" figures and tables, so they may not end up _precisely_ where put in text. It's usually better just to let this happen and not try to override it.
-
-# Citations
-
-Citations are supported in Markdown and pandoc (see documentation [here](https://pandoc.org/MANUAL.html#citations)).  In this template, the references are listed in `references.bib` in BibTeX format. Citations look like `[@foo]` where `foo` is the id of the BibTeX entry.
-
-Here's one example [@Collins:2008fr]. Some other sources include [@Fiebrink:2007cz], and [@Roads:1996ve]. Complex citations are possible too [e.g., @Worrall:1999kl, pp. 33-35; also @Collins:2008fr, ch. 1].
-
-This template includes a style file, `apa.csl`, to define the APA style we use in _Chroma_.
-
-You can also just type citations manually into the markdown file, and if the manuscript has been received as a Word document and converted to markdown, the references will be manually entered. In this case, add a section (`# References`) at the end of the document with the references after that. It's a good idea to add a _little_ bit of manual LaTeX code to make the references look right with hanging indents:
-
-    # References
-    
-    ```{=latex}
-    \begin{hangparas}{1.5em}{1}
-    ```
-    
-    Worrall, D. (1999). Cyberspace and sound. Proceedings of the Australasian Computer Music Conference.
-    
-    (other references)
-    
-    ```{=latex}
-    \end{hangparas}
-    ```
-
-
-
-# Header block
-
-The strange looking section of text at the start of this file contains the metadata which produces the title, authors, abstract and some other details for your article. It's in a format called [yaml](https://yaml.org) which is supposed to be human-friendly but is sometimes tricky to get right. A minimal article example would have:
-
-```{caption="The header block for this template" .yaml}
----
-title: 'Article Title'
-author: 
-    - name: Author Name
-      affiliation: Author Affiliation
-      city: City
-      country: Country
-      email: author.name@email.com
-author-header: A. Name (short version of author name)
-abstract: |
-    Article abstract
-anonymous: 'false'
-bibliography: 'references'
-papersize: a4
-classoption: 12pt
-reference-section-title: 'References'
-year: YYYY
-volume: XX
-number: X
-article-no: X
-date: 'YYYY-MM-DD'
-accepted-date: 'YYYY-MM-DD'
-published-date: 'YYYY-MM-DD'
----
+T = 240000 / (b * i * Δp)
 ```
 
-This section is set up this way to work with pandoc which expects the YAML metadata to be in this specific format (see the [pandoc manual](https://pandoc.org/MANUAL.html#extension-yaml_metadata_block)).
 
-Some Markdown preview software knows what to do with the YAML metadata, some will ignore it, and some will just print it out as if it is normal text, so if it doesn't appear correctly in your text editor that may not be a problem.
+In this case, a continuous rhythmic delay is accumulated due to the difference in the playback speed of the two motives, and a delay equal to n quarter notes of the unit bpm is accumulated for every multiple of the period T.
+This period has an important meaning when designing music with rhythmic phase-shifting techniques. As in discrete rhythmic phase shifting, it is desirable that the duration of rhythmic phase-shifting progression coincides with the unit of measure.
 
-# Conclusions
 
-Writing articles in Markdown can be a breath of fresh air compared to traditional word processors, but there can be some frustrations in terms of installing special software (e.g., pandoc) and in configuring the templates to create the right kind of outputs.
 
-Here's few things we haven't explained here but might in future:
+* *The formula for calculating the playback difference ΔP between P1 and P2 required to make a rhythmic phase which has the length of ‘i’th notes while the music is progressing for ’n’th measures in n1/n2 time music with a speed of Bpm b is as follows.*
 
-- lists (just like this one)
-- figure and section references
-- including LaTeX maths
-- how to convert from docx to markdown
 
-This is a living document and it is hoped that any authors (such as you!) who try it out might provide feedback (e.g., you could make an [issue on the template repository](https://github.com/cpmpercussion/chroma-template/issues)) and help us to improve this template for future authors and potentially other publications.
+
+```
+240000 / (b * i) = n * (n1 * 240000 / (b * n2)) * ΔP
+```
+
+
+ encapsulated  as 
+
+
+
+```
+n2 / (n1 * i * n)
+```
+ 
+
+## Continuous rhythmic phase-shifting with a changing playback speed
+
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/figure-changed-playback-speed.png)
+
+
+Figure 6.  Continuous rhythmic phase-shifting (unfixed playback speed)
+
+
+
+The second is the case of shifting in which phase-shifting is performed with a delay time as much as a unit rhythm at the point where the playback speed changes continuously and then returns to the original speed. Also, it is desirable that the total duration of the process in which the playback speed changes and then returns to the original value coincides with the duration in units of measure.
+In this case, the value obtained by integrating the time difference ΔP between the two playback speeds from the period t0 to t1 where phase shifting is in progress must be designed to match the delay time of the corresponding bpm unit rhythm when the playback speed returns to the origin.
+
+ 
+
+```
+ 240000 / (b * i) = integral( ΔP * dt , t0 , t1)
+```
+ 
+
+Of course, it is possible to make a model in which the playback speed of two or more motives changes simultaneously, but in this paper, the playback speed of the original motive sound file is fixed to x1 and the playback speed of another motive changes linearly. In addition, we deal with specific models only in which the left and right sides are symmetrical based on the point with the maximum amount of playback change.  
+
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/graph-log-and-exp-speed.png)
+
+
+figure 7. Continuous rhythmic phase-shifting (unfixed playback speed)
+
+
+
+A functional model that can continuously change playback speed can take many forms. In this paper,  the form of an f(x) function (linear, exponential, log, or a sine function) that passes through x,y (0, 0), is modulated as b*f(x) or f(a*x) with parameters a and b so that the shape of each function can be adjusted to fit the required artistic demands of the project where it is being used. For instance, the formula for calculating the playback speed that makes a rhythmic phase shift equal to the unit rhythm is as follows.
+
+* *From the starting point t0, with the initial playback speed P1 (as same as (Vm(t0)), in this case, it should be 0), the playback speed passes through the point t1 with the maximum amount of change Vm(t1) and returns to the initial playback speedP2 (as same as (Vm(t2))). (t1-t0 = t2- t1) At this time, the modulated formula Vm(x) that the two sound samples from t0 to t2 have rhythmic phase shifting as much as i th note of the corresponding Bpm b is as follows.* 
+
+
+
+
+```
+Vm = ax / b
+Vm = b * (e^ax - 1)
+Vm = b * ln(a * (x + (1/a)))
+Vm = b * (sin((pi * x) / (2 * ΔP)))
+```
+* *Note that variables a and b can control Playback speed (but one of the two must be fixed as a constant)*
+
+
+
+As an example of such a model, I used the natural log function for the test. At a speed of 120BPM with 4/4, if the variable ‘a’ is fixed to 1 and continuous playback speed modulation is performed for a total of 8 measures,(4 measures of increase, and 4 measures of decrease curve) In order to obtain a rhythmic phase delay equal to the quarter note of the music, the value of parameter b is calculated to be approximately 0.0212314, and the maximum playback speed of modulated motive sample is calculated to be approximately1.0466051. The formula used to create a symmetric structure based on the progression of 4 measures is as follows. This model can be programmed By using MaxMsp. The ‘line’ object is mainly for the linear model, and the ‘groove’ object is for time-stretching and adjusting the playback speed.
+
+ 
+
+```
+y= 0.0212314*ln(x+1)   from 0-8s
+y= 0.0212314*ln(17-x)  from 8-16s
+```
+ 
+
+The figure below shows an example patch's structure based on the parameter value and formula derived above with the buffer and groove object of MaxMsp.
+
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/example-max-patch-main.png)
+
+
+
+Figure 9. max patch for rhythmic phase-shifting
+
+
+In general, when manipulating the playback speed, the pitch of the sample audio changes as well. Therefore, in order to obtain a pure rhythmic phase-shifting effect without changing the pitch of the samples, time-stretch mode should be applied to the file where the playback speed is changed, but the phenomenon that the pitch changes as the playback speed changes can also be used as part of the musical intention. The adaptation of a technique between those two is up to the context and intent of the composer.
+
+
+
+
+## Mixed usage of the changed playback speed and fixed playback speed for rhythmic phase-shifting
+
+
+Finally, the two rhythmic phase shifting methods discussed in 3-1 and 3-2 above can be used in combination. In this case, the playback speed of one of the two identical motives may change continuously, maintain the peak value for a certain amount of time, and then return to the original value continuously.
+
+ 
+
+![Editing this Markdown file in VSCode and viewing a preview.](media/graph-mixed-playback-speed.png)
+
+
+
+Figure 10. Continuous rhythmic phase shifting (mixed use of fixed and variable playback speed)
+
+In addition, it is possible to create more complex musical effects by using different shifting models for two or more motives This could be the musical goal of this technique.
+
+
+
+# Conclusion
+
+Through several methods shown above, we looked at both the calculation and examples to implement these rhythmic phase-shifting techniques in a computational way. The techniques include discrete phase-shifting through sample delay, continuous phase-shifting using fixed and linear speed change of playback speed, and mixed-use of these various methods. Furthermore, this study presents musical possibilities of computational rhythmic phase-shifting through practical implementations of those techniques. These techniques can be useful musical tools for composers in the field of computer music.
+
+
+
+# Referennces
+
+
+[1]. Magnusson, Thor, and Alex McLean. “Performing with Patterns of Time." (2018). pp 3- 4
+
+[2]. Reich, Steve. Drumming for voice and ensemble( 1970-71), Boosey & Hawkes (Hendon Music), mm 11-12
+
+[3]. Adams, John.  Shaker Loops for String Orchestral Score (1982 Revised), Boosey & Hawkes (Hendon Music) mm 71-12
+
+[4]. Schutz, Michael. "What Really Happens in Steve Reich’s “Drumming”?." PERCUSSIVE NOTES (2019): 87. pp 1-2
+
