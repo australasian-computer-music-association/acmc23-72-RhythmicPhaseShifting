@@ -3,7 +3,6 @@ title: 'Computation and Musical Applications of Discrete and Continuous Rhythmic
 author: 
     - name: Yoonjae Choi
       affiliation: Hanyang University
-      orcid: https://orcid.org/0000-0000-0000-0000
       city: Seoul 
       country: South Korea
       email: hogysim93@gmail.com
