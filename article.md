@@ -16,12 +16,12 @@ papersize: a4
 classoption: 12pt
 reference-section-title: 'References'
 year: 2023
-volume: XX
-number: X
-article-no: X
-date: '2023-09-17'
-accepted-date: '2023-09-22'
-published-date: 'YYYY-MM-DD'
+volume: 39
+number: 2
+article-no: 6
+date: '2023-07-13'
+accepted-date: '2023-08-04'
+published-date: '2023-10-09'
 ---
 
 # Introduction
