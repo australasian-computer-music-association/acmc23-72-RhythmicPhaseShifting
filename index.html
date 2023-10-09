@@ -97,37 +97,33 @@ and computers.</p>
 <h1 data-number="2" id="discrete-rhythmic-phase-shifting"><span
 class="header-section-number">2</span> Discrete Rhythmic
 phase-shifting</h1>
-<p>Discrete phase-shifting can be implemented by making the time
-interval delay by the corresponding length of the unit note. This is
-shown in figure 3.</p>
 <figure>
 <img src="media/figure-discreted-phase-shifting.png"
-alt="Discrete rhythmic phase-shifting by one beat (T ms)" />
+alt="Discrete rhythmic phase-shifting by one beat (Tms)" />
 <figcaption aria-hidden="true">Discrete rhythmic phase-shifting by one
-beat (T ms)</figcaption>
+beat (<span class="math inline"><em>T</em></span>ms)</figcaption>
 </figure>
-<p>Half, triple, quarter and eighth notes are the major units for the
-delay.</p>
-<ul>
-<li><em>Suppose we have two audio samples with the same unit BPM ‘b’,
-the equation for the rhythmic phase delay T ms of i th notes length is
-as follows.</em></li>
-</ul>
+<p>Discrete phase-shifting can be implemented by making the time
+interval delay by the corresponding length of the unit note. This is
+shown in Figure 3. Half, triple, quarter and eighth notes are the major
+units for the delay. Suppose we have two audio samples with the same
+unit BPM <span class="math inline"><em>b</em></span>, the equation for
+the rhythmic phase delay <span class="math inline"><em>T</em></span>ms
+of <span class="math inline"><em>i</em></span>th notes length is as
+follows:</p>
 <p><span
-class="math display"><em>T</em> = 240000/<em>b</em> * <em>i</em></span></p>
-<p>*b; BPM, i; i th note</p>
+class="math display"><em>T</em> = 240000/(<em>b</em>*<em>i</em>)</span></p>
 <p>In this case, the musical effect is identical to the example shown in
-figure 1. For example, the length of a note corresponding to a single
-quarter note at a speed of 120 BPM is calculated as 500 ms by the above
+Figure 1. For example, the length of a note corresponding to a single
+quarter note at a speed of 120BPM is calculated as 500ms by the above
 formula. Of course, discrete shifting is possible at any point in time,
 but considering the musical effect, it is more desirable that the
-shifting point follows the unit of measure.</p>
-<ul>
-<li><em>Assuming n1/n2 beats of music, the formula for the interval T ms
-corresponding to one measure is as follows.</em></li>
-</ul>
+shifting point follows the unit of measure. Assuming <span
+class="math inline"><em>n</em>1/<em>n</em>2</span> beats of music, the
+formula for the interval <span class="math inline"><em>T</em></span>ms
+corresponding to one measure is as follows:</p>
 <p><span
-class="math display"><em>T</em> = <em>n</em>1 * 240000/<em>b</em> * <em>n</em>2</span></p>
+class="math display"><em>T</em> = <em>n</em>1 * 240000/(<em>b</em>*<em>n</em>2)</span></p>
 <p>Furthermore, using this technique makes it possible to make the
 phase-shifting with a non-unit interval delay that can be hardly
 possible by conventional methods such as music written by a score or
@@ -146,7 +142,7 @@ phase-shifting</h1>
 each motive or time stretch. In case of this, the time interval of delay
 can be gradually increased or decreased making a more detailed rhythmic
 change. This can be found in some acoustical pieces such as Steve
-Reich’s Drumming shown in figure 2. even though its usage is extremely
+Reich’s Drumming shown in Figure 2. even though its usage is extremely
 limited. Generally, this technique requires an amount of practice for
 players and is even impossible when it goes to the extreme. In order to
 apply linear phase-shifting in computer music, it is essential to
@@ -160,61 +156,65 @@ id="continuous-rhythmic-phase-shifting-with-a-fixed-playback-speed"><span
 class="header-section-number">3.1</span> Continuous rhythmic
 phase-shifting with a fixed playback speed</h2>
 <figure>
-<img src="media/figure-fixed-playback-speed.png"
+<img src="media/figure-fixed-playback-speed.png" style="width:50.0%"
 alt="Continuous rhythmic phase-shifting (fixed playback speed)" />
 <figcaption aria-hidden="true">Continuous rhythmic phase-shifting (fixed
 playback speed)</figcaption>
+</figure>
+<figure>
+<img src="media/graph-fixed-playback-speed.png" style="width:50.0%"
+alt="Continuous rhythmic phase-shifting (fixed playback speed)." />
+<figcaption aria-hidden="true">Continuous rhythmic phase-shifting (fixed
+playback speed).</figcaption>
 </figure>
 <p>The first is a case in which the two looped sounds have different
 playback speeds that are fixed. In this case, the rhythmic phase of the
 two motives with different playback speeds is linearly stretched. As a
 result, the phenomenon in which unsynchronized rhythms are scattered and
 then synchronized by the length of the unit notes is periodically
-repeated.</p>
-<figure>
-<img src="media/graph-fixed-playback-speed.png"
-alt="Continuous rhythmic phase-shifting (fixed playback speed)." />
-<figcaption aria-hidden="true">Continuous rhythmic phase-shifting (fixed
-playback speed).</figcaption>
-</figure>
-<p>The formula for calculating the period in which the phase shifting
-phase is scattered and synchronized when there is a difference in the
-playback speed is as follows.</p>
-<ul>
-<li><em>Assuming that two sound sources with unit BPM <span
-class="math inline"><em>b</em></span> have playback speed differences
-<span class="math inline"><em>Δ</em><em>P</em></span>, the period T at
-which the delay equals the <span class="math inline"><em>i</em></span>th
-note is as follows. (At this time, the unit of <span
-class="math inline"><em>T</em></span> is ms)</em></li>
-</ul>
+repeated. The formula for calculating the period in which the phase
+shifting phase is scattered and synchronized when there is a difference
+in the playback speed is as follows. Assuming that two sound sources
+with unit BPM <span class="math inline"><em>b</em></span> have playback
+speed differences <span class="math inline"><em>Δ</em><em>P</em></span>,
+the period <span class="math inline"><em>T</em></span>ms at which the
+delay equals the <span class="math inline"><em>i</em></span>th note is
+as follows:</p>
 <p><span
-class="math display"><em>T</em> = 240000/(<em>b</em>*<em>i</em>*<em>Δ</em><em>p</em>)</span></p>
+class="math display"><em>T</em> = 240000/(<em>b</em>*<em>i</em>*<em>Δ</em><em>P</em>)</span></p>
 <p>In this case, a continuous rhythmic delay is accumulated due to the
 difference in the playback speed of the two motives, and a delay equal
 to n quarter notes of the unit BPM is accumulated for every multiple of
-the period T. This period has an important meaning when designing music
-with rhythmic phase-shifting techniques. As in discrete rhythmic phase
-shifting, it is desirable that the duration of rhythmic phase-shifting
-progression coincides with the unit of measure.</p>
-<ul>
-<li><em>The formula for calculating the playback difference <span
-class="math inline"><em>Δ</em><em>P</em></span> between P1 and P2
-required to make a rhythmic phase which has the length of ’i’th notes
-while the music is progressing for ’n’th measures in n1/n2 time music
-with a speed of BPM b is as follows.</em></li>
-</ul>
+the period <span class="math inline"><em>T</em></span>. This period has
+an important meaning when designing music with rhythmic phase-shifting
+techniques. As in discrete rhythmic phase shifting, it is desirable that
+the duration of rhythmic phase-shifting progression coincides with the
+unit of measure. The formula for calculating the playback difference
+<span class="math inline"><em>Δ</em><em>P</em></span> between <span
+class="math inline"><em>P</em>1</span> and <span
+class="math inline"><em>P</em>2</span> required to make a rhythmic phase
+which has the length of <span class="math inline"><em>i</em></span>th
+notes while the music is progressing for <span
+class="math inline"><em>n</em></span> measures in <span
+class="math inline"><em>n</em>1/<em>n</em>2</span> time music with a
+speed of BPM <span class="math inline"><em>b</em></span> is:</p>
 <p><span
 class="math display">240000/(<em>b</em>*<em>i</em>) = <em>n</em> * (<em>n</em>1*240000/(<em>b</em>*<em>n</em>2)) * <em>Δ</em><em>P</em></span></p>
-<p>encapsulated as</p>
+<p>encapsulated as:</p>
 <p><span
-class="math display"><em>n</em>2/(<em>n</em>1*<em>i</em>*<em>n</em>)</span></p>
+class="math display"><em>n</em>2/(<em>n</em>1*<em>i</em>*<em>n</em>) = <em>Δ</em><em>P</em></span></p>
 <h2 data-number="3.2"
 id="continuous-rhythmic-phase-shifting-with-a-changing-playback-speed"><span
 class="header-section-number">3.2</span> Continuous rhythmic
 phase-shifting with a changing playback speed</h2>
 <figure>
-<img src="media/figure-changed-playback-speed.png"
+<img src="media/figure-changed-playback-speed.png" style="width:50.0%"
+alt="Continuous rhythmic phase-shifting (unfixed playback speed)" />
+<figcaption aria-hidden="true">Continuous rhythmic phase-shifting
+(unfixed playback speed)</figcaption>
+</figure>
+<figure>
+<img src="media/graph-log-and-exp-speed.png" style="width:50.0%"
 alt="Continuous rhythmic phase-shifting (unfixed playback speed)" />
 <figcaption aria-hidden="true">Continuous rhythmic phase-shifting
 (unfixed playback speed)</figcaption>
@@ -227,70 +227,84 @@ which the playback speed changes and then returns to the original value
 coincides with the duration in units of measure. In this case, the value
 obtained by integrating the time difference <span
 class="math inline"><em>Δ</em><em>P</em></span> between the two playback
-speeds from the period t0 to t1 where phase shifting is in progress must
-be designed to match the delay time of the corresponding BPM unit rhythm
-when the playback speed returns to the origin.</p>
+speeds from the period <span class="math inline"><em>t</em>0</span> to
+<span class="math inline"><em>t</em>1</span> where phase shifting is in
+progress must be designed to match the delay time of the corresponding
+BPM unit rhythm when the playback speed returns to the origin.</p>
 <p><span
-class="math display">240000/(<em>b</em>*<em>i</em>) = <em>i</em><em>n</em><em>t</em><em>e</em><em>g</em><em>r</em><em>a</em><em>l</em>(<em>Δ</em><em>P</em>*<em>d</em><em>t</em>,<em>t</em>0,<em>t</em>1)</span></p>
+class="math display">240000/(<em>b</em>*<em>i</em>) = ∫<sub><em>t</em>0</sub><sup><em>t</em>1</sup><em>Δ</em><em>P</em>.<em>d</em><em>t</em></span></p>
 <p>Of course, it is possible to make a model in which the playback speed
 of two or more motives changes simultaneously, but in this paper, the
-playback speed of the original motive sound file is fixed to x1 and the
-playback speed of another motive changes linearly. In addition, we deal
-with specific models only in which the left and right sides are
-symmetrical based on the point with the maximum amount of playback
-change.</p>
-<figure>
-<img src="media/graph-log-and-exp-speed.png"
-alt="Continuous rhythmic phase-shifting (unfixed playback speed)" />
-<figcaption aria-hidden="true">Continuous rhythmic phase-shifting
-(unfixed playback speed)</figcaption>
-</figure>
+playback speed of the original motive sound file is fixed to <span
+class="math inline"><em>x</em>1</span> and the playback speed of another
+motive changes linearly. In addition, we deal with specific models only
+in which the left and right sides are symmetrical based on the point
+with the maximum amount of playback change.</p>
 <p>A functional model that can continuously change playback speed can
-take many forms. In this paper, the form of an f(x) function (linear,
-exponential, log, or a sine function) that passes through x,y (0, 0), is
-modulated as b<em>f(x) or f(a</em>x) with parameters a and b so that the
-shape of each function can be adjusted to fit the required artistic
-demands of the project where it is being used. For instance, the formula
-for calculating the playback speed that makes a rhythmic phase shift
-equal to the unit rhythm is as follows.</p>
-<ul>
-<li><em>From the starting point t0, with the initial playback speed P1
-(as same as (Vm(t0)), in this case, it should be 0), the playback speed
-passes through the point t1 with the maximum amount of change Vm(t1) and
-returns to the initial playback speedP2 (as same as (Vm(t2))). (t1-t0 =
-t2- t1) At this time, the modulated formula Vm(x) that the two sound
-samples from t0 to t2 have rhythmic phase shifting as much as i th note
-of the corresponding BPM b is as follows.</em></li>
-</ul>
+take many forms. In this paper, the form of an <span
+class="math inline"><em>f</em>(<em>x</em>)</span> function (linear,
+exponential, log, or a sine function) that passes through <span
+class="math inline"><em>x</em>, <em>y</em></span> <span
+class="math inline">(0,0)</span>, is modulated as <span
+class="math inline"><em>b</em><em>f</em>(<em>x</em>)</span> or <span
+class="math inline"><em>f</em>(<em>a</em><em>x</em>)</span> with
+parameters <span class="math inline"><em>a</em></span> and <span
+class="math inline"><em>b</em></span> so that the shape of each function
+can be adjusted to fit the required artistic demands of the project
+where it is being used. For instance, the formula for calculating the
+playback speed that makes a rhythmic phase shift equal to the unit
+rhythm is as follows.</p>
+<p>From the starting point <span class="math inline"><em>t</em>0</span>,
+with the initial playback speed <span
+class="math inline"><em>P</em>1</span> (as same as <span
+class="math inline"><em>V</em><sub><em>m</em></sub>(<em>t</em>0)</span>,
+in this case, it should be 0), the playback speed passes through the
+point <span class="math inline"><em>t</em>1</span> with the maximum
+amount of change <span
+class="math inline"><em>V</em><sub><em>m</em></sub>(<em>t</em>1)</span>
+and returns to the initial playback speed <span
+class="math inline"><em>P</em>2</span>, the same as <span
+class="math inline"><em>V</em><sub><em>m</em></sub>(<em>t</em>2)</span>,
+(<span
+class="math inline"><em>t</em>1 − <em>t</em>0 = <em>t</em>2 − <em>t</em>1</span>)
+At this time, the modulated formula <span
+class="math inline"><em>V</em><sub><em>m</em></sub>(<em>x</em>)</span>
+that the two sound samples from <span
+class="math inline"><em>t</em>0</span> to <span
+class="math inline"><em>t</em>2</span> have rhythmic phase shifting as
+much as <span class="math inline"><em>i</em></span>th note of the
+corresponding BPM <span class="math inline"><em>b</em></span> is as
+follows:</p>
 <p><span
-class="math display"><em>V</em><em>m</em> = <em>a</em><em>x</em>/<em>b</em></span>
+class="math display"><em>V</em><sub><em>m</em></sub> = <em>a</em><em>x</em>/<em>b</em></span>
 <span
-class="math display"><em>V</em><em>m</em> = <em>b</em> * (<em>e</em><sup><em>a</em></sup><em>x</em>−1)</span>
+class="math display"><em>V</em><sub><em>m</em></sub> = <em>b</em>(<em>e</em><sup><em>a</em><em>x</em></sup>−1)</span>
 <span
-class="math display"><em>V</em><em>m</em> = <em>b</em> * <em>l</em><em>n</em>(<em>a</em>*(<em>x</em>+(1/<em>a</em>)))</span>
+class="math display"><em>V</em><sub><em>m</em></sub> = <em>b</em>ln (<em>a</em>(<em>x</em>+1/<em>a</em>))</span>
 <span
-class="math display"><em>V</em><em>m</em> = <em>b</em> * (<em>s</em><em>i</em><em>n</em>((<em>p</em><em>i</em>*<em>x</em>)/(2*<em>Δ</em><em>P</em>)))</span></p>
-<ul>
-<li><em>Note that variables a and b can control Playback speed (but one
-of the two must be fixed as a constant)</em></li>
-</ul>
+class="math display"><em>V</em><sub><em>m</em></sub> = <em>b</em>sin ((<em>π</em><em>x</em>)/(2<em>Δ</em><em>P</em>))<sup><em>a</em></sup></span></p>
+<p>Note that variables <span class="math inline"><em>a</em></span> and
+<span class="math inline"><em>b</em></span> can control playback speed
+(but one of the two must be fixed as a constant).</p>
 <p>As an example of such a model, I used the natural log function for
-the test. At a speed of 120BPM with 4/4, if the variable ‘a’ is fixed to
-1 and continuous playback speed modulation is performed for a total of 8
-measures,(4 measures of increase, and 4 measures of decrease curve) In
-order to obtain a rhythmic phase delay equal to the quarter note of the
-music, the value of parameter b is calculated to be approximately
-0.0212314, and the maximum playback speed of modulated motive sample is
-calculated to be approximately1.0466051. The formula used to create a
-symmetric structure based on the progression of 4 measures is as
-follows. This model can be programmed By using Max. The ‘line’ object is
-mainly for the linear model, and the ‘groove’ object is for
-time-stretching and adjusting the playback speed.</p>
-<p><span
-class="math display"><em>y</em> = 0.0212314 * <em>l</em><em>n</em>(<em>x</em>+1)
+the test. At a speed of 120BPM with <span
+class="math inline">4/4</span>, the variable <span
+class="math inline"><em>a</em></span> is fixed to 1 and continuous
+playback speed modulation is performed for a total of 8 measures (4
+measures of increase, and 4 measures of decrease curve). In order to
+obtain a rhythmic phase delay equal to the quarter note of the music,
+the value of parameter <span class="math inline"><em>b</em></span> is
+calculated to be approximately 0.0212314, and the maximum playback speed
+of modulated motive sample is calculated to be approximately 1.0466051.
+The formula used to create a symmetric structure based on the
+progression of 4 measures is as follows. This model can be programmed By
+using Max. The “line” object is mainly for the linear model, and the
+“groove” object is for time-stretching and adjusting the playback
+speed.</p>
+<p><span class="math display"><em>y</em> = 0.0212314ln (<em>x</em>+1)
 from 0-8s </span> <span
-class="math display"><em>y</em> = 0.0212314 * <em>l</em><em>n</em>(17−<em>x</em>)
-from 8-16s </span></p>
+class="math display"><em>y</em> = 0.0212314ln (17−<em>x</em>) from 8-16s
+</span></p>
 <p>The figure below shows an example patch’s structure based on the
 parameter value and formula derived above with the buffer and groove
 object of Max. In general, when manipulating the playback speed, the
@@ -312,7 +326,7 @@ id="mixed-usage-of-the-changed-playback-speed-and-fixed-playback-speed-for-rhyth
 class="header-section-number">3.3</span> Mixed usage of the changed
 playback speed and fixed playback speed for rhythmic phase-shifting</h2>
 <figure>
-<img src="media/graph-mixed-playback-speed.png"
+<img src="media/graph-mixed-playback-speed.png" style="width:50.0%"
 alt="Continuous rhythmic phase shifting (mixed use of fixed and variable playback speed)" />
 <figcaption aria-hidden="true">Continuous rhythmic phase shifting (mixed
 use of fixed and variable playback speed)</figcaption>
